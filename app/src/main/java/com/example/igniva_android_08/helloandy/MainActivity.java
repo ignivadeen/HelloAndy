@@ -1,5 +1,6 @@
 package com.example.igniva_android_08.helloandy;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //startActivity(new Intent(this,TestRadioButton.class));
 
         // Jsoup parsing
         JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
@@ -162,6 +166,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+        // this is tets commetc
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -192,9 +197,7 @@ public class MainActivity extends AppCompatActivity
                 Log.d("TAG",""+allElements);
 
                 for (Element elem : allElements) {
-
                     String elementName=elem.tagName().toString();
-
                     Log.d("Tag name is " , elementName);
 
                 }
