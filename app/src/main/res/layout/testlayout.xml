@@ -16,6 +16,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_body"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
