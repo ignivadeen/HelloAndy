@@ -6,6 +6,8 @@ package com.example.igniva_android_08.helloandy;
  */
 public class TwitterPojo {
 
+    // pojo class
+
     private String name;
     private String handleName;
     private String date;
