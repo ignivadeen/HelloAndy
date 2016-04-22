@@ -39,14 +39,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //startActivity(new Intent(this,TestRadioButton.class));
-
         // Jsoup parsing
         JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
         jsoupAsyncTask.execute();
         // Start Webview
-
         webViewSynopsis=(WebView)findViewById(R.id.wv_test);
         webViewSynopsis.getSettings().setJavaScriptEnabled(true);
         webViewSynopsis.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -56,7 +53,6 @@ public class MainActivity extends AppCompatActivity
 //                "            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>", "text/html", "UTF-8");
 
         webViewSynopsis.setWebViewClient(new WebViewClient() {
-
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -65,18 +61,15 @@ public class MainActivity extends AppCompatActivity
                     progressDialog.setMessage("Page is loading..");
                     progressDialog.show();*/
             }
-
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 // Handle the error
             }
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
-
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
@@ -86,11 +79,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
         // End Webview
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -166,7 +155,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        // this is tets commetc
+        // this is test comment
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -182,24 +171,28 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected Integer doInBackground(Void... params) {
+
+            // parse jsoup Elements
+
             int sizeOfTweets=0;
             try {
                 htmlDocument = Jsoup.connect(htmlPageUrl).get();
                 htmlContentInStringFormat = htmlDocument.title();
-
                 // select your div with yor class
                 Element divid = htmlDocument.select("div.Timeline-base").first();
                 Elements divChildren = divid.children();
                 Element first=divChildren.first();
                 sizeOfTweets=first.childNodeSize();
-
                 Elements allElements = first.children();
+
                 Log.d("TAG",""+allElements);
 
                 for (Element elem : allElements) {
-                    String elementName=elem.tagName().toString();
-                    Log.d("Tag name is " , elementName);
-
+                    //String elementName=elem.tagName().toString();
+                    //Log.d("Tag name is " , elementName);
+                    String key = elem.attr("div.Tweet-body");
+                    String value = elem.attr("UserNames-screenName");
+                    Log.d("TAG","key is "+key+" value is "+value);
                 }
 
             } catch (Exception e) {
