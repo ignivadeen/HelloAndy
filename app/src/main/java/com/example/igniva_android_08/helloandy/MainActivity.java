@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     private String htmlContentInStringFormat;
     ArrayList<TwitterPojo> mTweetsList =new ArrayList<TwitterPojo>();
 
+        // this is deen
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
